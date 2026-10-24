@@ -56,7 +56,7 @@ class _CustomerStatementPageState extends State<CustomerStatementPage> {
               amount: payment.amount,
               isPayment: true,
             ),
-        ]..sort((left, right) {
+        ..sort((left, right) {
           final dateOrder = left.date.compareTo(right.date);
           if (dateOrder != 0) return dateOrder;
           if (left.isPayment == right.isPayment) return 0;
@@ -350,8 +350,13 @@ bool _sameInvoice(CreditSale left, CreditSale right) =>
 
 String _money(double value) => 'R${value.toStringAsFixed(2)}';
 
-String _shortDate(DateTime date) =>
-    '${date.day} ${date.month == 9 ? 'Sept' : Customer.monthName(date.month)}';
+String _shortDate(DateTime date) {
+  const months = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'
+  ];
+  return '${date.day} ${months[date.month - 1]}';
+}
 
 String _formatDate(DateTime date) =>
     '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
