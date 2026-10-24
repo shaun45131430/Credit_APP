@@ -107,9 +107,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         vertical: compact ? 12 : 18,
                       ),
                       alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF0E2C75),
-                        borderRadius: const BorderRadius.only(
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF0E2C75),
+                        borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(24),
                           topRight: Radius.circular(24),
                         ),
@@ -310,7 +310,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                               style: TextStyle(
                                 fontSize: compact ? 18 : 24,
                                 color: const Color(0xFF131313)
-                                    .withValues(alpha: 0.9),
+                                    .withOpacity(0.9),
                               ),
                             ),
                           ),
