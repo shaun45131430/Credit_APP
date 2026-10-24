@@ -38,12 +38,12 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
               phoneController.text.trim().isNotEmpty));
 
   List<TextEditingController> get _controllers => [
-    nameController,
-    phoneController,
-    amountController,
-    itemController,
-    notesController,
-  ];
+        nameController,
+        phoneController,
+        amountController,
+        itemController,
+        notesController,
+      ];
 
   @override
   void initState() {
@@ -132,7 +132,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (widget.customers.isNotEmpty) ...[
-                            _FieldLabel('Customer', compact: compact),
+                            const _FieldLabel('Customer', compact: false),
                             const SizedBox(height: 6),
                             Container(
                               height: 68,
@@ -174,7 +174,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                             const SizedBox(height: 18),
                           ],
                           if (isNewCustomer) ...[
-                            _FieldLabel('Full Name', compact: compact),
+                            const _FieldLabel('Full Name', compact: false),
                             const SizedBox(height: 6),
                             RoundedInput(
                               controller: nameController,
@@ -182,7 +182,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                               obscureText: false,
                             ),
                             const SizedBox(height: 16),
-                            _FieldLabel('Phone Number', compact: compact),
+                            const _FieldLabel('Phone Number', compact: false),
                             const SizedBox(height: 6),
                             RoundedInput(
                               controller: phoneController,
@@ -192,7 +192,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                             ),
                             const SizedBox(height: 18),
                           ],
-                          _FieldLabel('Amount (R)', compact: compact),
+                          const _FieldLabel('Amount (R)', compact: false),
                           const SizedBox(height: 6),
                           RoundedInput(
                             controller: amountController,
@@ -203,7 +203,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                             ),
                           ),
                           const SizedBox(height: 18),
-                          _FieldLabel('Sale date', compact: compact),
+                          const _FieldLabel('Sale date', compact: false),
                           const SizedBox(height: 6),
                           _DateField(
                             value:
@@ -212,7 +212,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                             onTap: _pickSaleDate,
                           ),
                           const SizedBox(height: 18),
-                          _FieldLabel('Due date', compact: compact),
+                          const _FieldLabel('Due date', compact: false),
                           const SizedBox(height: 6),
                           _DateField(
                             value:
@@ -221,7 +221,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                             onTap: _pickDueDate,
                           ),
                           const SizedBox(height: 18),
-                          _FieldLabel('Item (optional)', compact: compact),
+                          const _FieldLabel('Item (optional)', compact: false),
                           const SizedBox(height: 6),
                           RoundedInput(
                             controller: itemController,
@@ -229,7 +229,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                             obscureText: false,
                           ),
                           const SizedBox(height: 18),
-                          _FieldLabel('Notes (optional)', compact: compact),
+                          const _FieldLabel('Notes (optional)', compact: false),
                           const SizedBox(height: 6),
                           RoundedInput(
                             controller: notesController,
@@ -381,8 +381,13 @@ class _DateField extends StatelessWidget {
   }
 }
 
-String _formatDate(DateTime date) =>
-    '${date.day.toString().padLeft(2, '0')} ${Customer.monthName(date.month)} ${date.year}';
+String _formatDate(DateTime date) {
+  const months = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+  ];
+  return '${date.day.toString().padLeft(2, '0')} ${months[date.month - 1]} ${date.year}';
+}
 
 String _dateLabel(DateTime date) =>
     DateUtils.isSameDay(date, DateTime.now()) ? 'today' : 'selected';
