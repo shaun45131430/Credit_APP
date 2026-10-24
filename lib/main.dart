@@ -1,5 +1,5 @@
-import 'package:credit_book/pages/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'pages/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1E2875)),
         useMaterial3: true,
       ),
-      home: const LoginPage(),
+      home: LoginPage(),
     );
   }
 }
